@@ -1,6 +1,6 @@
 # Gemini-based Poster Template
 
-This repository contains a modern LaTeX [beamerposter] template based on the [Gemini] theme by Anish Athalye, customized for use with the University of Cambridge / VU style and personal workflow.
+This repository contains a modern LaTeX [beamerposter] template based on the [Gemini] theme by Anish Athalye, customized for use with the VU style and personal workflow.
 
 <p align="center">
 <a href="poster.pdf">
