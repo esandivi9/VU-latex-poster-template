@@ -3,8 +3,8 @@
 This repository contains a modern LaTeX [beamerposter] template based on the [Gemini] theme by Anish Athalye, customized for use with the University of Cambridge / VU style and personal workflow.
 
 <p align="center">
-<a href="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-gemini.pdf">
-<img src="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-gemini-small.png" alt="Gemini Poster Example">
+<a href="poster.pdf">
+<img src="poster-small.png" alt="Poster preview">
 </a>
 </p>
 
