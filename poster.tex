@@ -1,0 +1,298 @@
+% Unofficial University of Cambridge Poster Template
+% https://github.com/andiac/gemini-cam
+% a fork of https://github.com/anishathalye/gemini
+% also refer to https://github.com/k4rtik/uchicago-poster
+
+\documentclass[final, leqno]{beamer}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[orientation=landscape,size=a0,scale=1.25]{beamerposter}
+\usetheme{gemini}
+\usecolortheme{vu}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{anyfontsize}
+\usepackage{stackengine}
+% Added stuff
+\usepackage{fontawesome5}
+\usepackage{tikz-cd}
+\usepackage{xfrac}
+\usepackage{mathtools}
+\usepackage{centernot}
+\usepackage[%
+    capitalise,%
+    nameinlink,%
+    noabbrev,%
+]{cleveref}
+\usepackage[percent]{overpic}
+\usepackage{tabstackengine}
+\usetikzlibrary{calc}
+\stackMath
+
+% ====================
+% Math abbrev.
+% ====================
+
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\pr{\mathrm{pr}}
+\def\Hom{\mathrm{Hom}}
+\def\SO{\mathrm{SO}}
+\def\O{\mathrm{O}}
+\def\Tor{\mathrm{Tor}}
+\def\Ext{\mathrm{Ext}}
+\def\Pin{\text{Pin}^-}
+\def\PinStr{\mathcal{P}\mathrm{in}}
+\def\Split{\mathcal{S}\mathrm{plit}}
+\def\Spin{\mathrm{Spin}}
+\def\Fr{\mathbb{F}}
+\def\Or{\mathbb{L}}
+\def\Pinm{\Pin}
+\def\PinBor1{\Omega_1^{\Pinm}}
+\def\normb{\nu}
+\def\sq{\mathrm{Sq}}
+\def\coker{\mathrm{coker}}
+
+\newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+\theoremstyle{plain}
+\newtheorem{mythm}{Theorem}
+
+\newcommand\emphdef[1]{\textit{\textbf{#1}}}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.005\paperwidth}
+\setlength{\colwidth}{0.30\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{Homoclinic Orbits Near the Hamiltonian-Hopf Bifurcation in the Suspension Bridge Equation}
+
+\author{\underline{Eric Sandin Vidal}, Jan Bouwe van den Berg}
+
+%\institute[shortinst]{Vrije Universiteit Amsterdam}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+    SIAM Conference on Applications of Dynamical Systems
+    \hfill
+    \href{mailto:e.sandin.vidal@vu.nl}{\faIcon{envelope}\:~ e.sandin.vidal@vu.nl}
+}
+% (can be left out to remove footer)
+
+\newcommand{\hHuge}{\fontsize{50}{70}\selectfont}
+
+
+% ====================
+% Logo (optional)
+% ====================
+
+% use this to include logos on the left and/or right side of the header:
+%\logoright{\includegraphics[height=7cm]{logos/NCG-LOGO-INV.pdf}}
+\logoright{\includegraphics[height=9cm]{logos/VU_logo_inverted.pdf}}
+
+% ====================
+% Body
+% ====================
+
+\begin{document}
+
+\begin{frame}[fragile, t]
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
+\definecolor{orangevu}{HTML}{CC4100}
+\draw[orangevu] (3,-15)  -- (77.25,-15) node[anchor=south east]{\hHuge \textbf{The Good}};
+\draw[orangevu] (3,-46.5)  -- (115.9,-46.5) node[anchor=south east]{\hHuge \textbf{The Ugly}};
+\draw[orangevu] (80.3,-15)  -- (115.9,-15) node[anchor=south east]{\hHuge \textbf{The Bad}};
+\end{tikzpicture}
+
+\vspace{1cm}
+
+\begin{columns}[t]
+
+\begin{column}{\colwidth}
+
+    \begin{block}{Initial Setting}
+        We start from the PDE that models the deflection of the roadway in a suspension bridge
+        $$\frac{\partial^2 U}{\partial T^2} = -\frac{\partial^4 U}{\partial X^4}-e^U+1$$
+        
+        and we focus on traveling wave solutions $U(T,X)=u(X-cT)$ describing a disturbance $u$ propagating at velocity $c$ along the surface of the bridge.\\
+        \vspace{2.5cm}
+        \begin{figure}
+            \begin{overpic}[width=0.7\columnwidth]{figures/Wave.pdf}
+                \put (100,4) {$\displaystyle X$}
+                \put (65,28) {$c$}
+                \put (50,52) {$u$}
+            \end{overpic}
+            %\caption{The bridge deflection profile under a traveling wave at speed $c$ at a specific time $T$.}
+        \end{figure}
+    \end{block}
+    \end{column}
+
+    \begin{column}{\colwidth}
+
+    \begin{minipage}[t]{\colwidth} 
+    By taking $t=X-cT$ we reach the ODE
+    $$u''''+ c^2 u''+e^u-1=0.$$
+    Due to the reversibility symmetry of the PDE we can focus on symmetric solutions for each $\beta = c^2 \in (0,2)$.
+        
+    It is known that there exists a symmetric homoclinic orbit for all parameter values $\beta \in (0, 1.9]$ as seen in \cite{santra2009homoclinic, van2018continuation}. The goal is to extend this result to the rest of the interval $(0,2)$.
+    \end{minipage}
+    
+\begin{block}{Methodology}
+        The idea is to construct a similar Computer Assisted Proof (CAP) as in \cite{van2018continuation}. We split the problem into two parts:
+        \begin{itemize}
+            \item A rigorous parameterization of the local (un)stable manifolds at the equilibrium $0 \in \mathbb{R}^4$. 
+            \item Solving a boundary value problem for the part of the orbit between the local invariant manifolds by using continuation and Chebyshev series.
+        \end{itemize}
+        For smaller values of $\beta$ the boundary value problem is the most difficult part, as the orbit makes a bigger and bigger excursion away from the origin.
+        However, for values of $\beta$ close to $2$ it is more difficult to obtain the local (un)stable manifold of the origin, as the real part of the eigenvalues tends to zero.
+    \end{block}
+
+\end{column}
+
+\begin{column}{\colwidth}
+    \begin{block}{The Hamiltonian-Hopf Bifurcation Problem}
+        When $\beta$ approaches $2$, the eigenvalues of the system tend to purely imaginary, leading to a Hamiltonian-Hopf bifurcation in which the invariant manifolds and the homoclinic connection collapse to the origin. Thus, the spectral gap becomes smaller as $\beta$ approaches $2$.
+        \begin{figure}
+        \centering
+        \begin{overpic}[width=.4\textwidth]{figures/vaps.pdf}
+        \put (85,75) {$\mathbb{C}$}
+        \end{overpic}
+        %\caption{The eigenvalues get closer to the imaginary axis as $\beta$ gets closer to $2$.}
+    \end{figure}
+    The parameterization of the manifolds is in terms of a series expansion. The decay rate of the terms in the series is proportional to the spectral gap. When $\beta \to 2$ this makes the estimates blow up.
+    \end{block}
+\end{column}
+\end{columns}
+
+\vspace{1cm}
+
+\begin{columns}[t]
+
+\begin{column}{\colwidth}
+\begin{block}{Rescaling Approach}
+        To circumvent the bifurcation problem, we can search for a time rescaling in which the small manifolds are magnified to a standard size. To continue the CAP from there, we should find explicit approximations for such manifolds.
+    \end{block}
+
+    \begin{block}{Normal Form Transformation}
+        The approach used in \cite{mcswiggen2003evolution} uses the normal form of the corresponding Hamiltonian of the RTBP problem to find a first approximation of the manifolds and prove their connection. For our case we use the Hamiltonian of the suspension bridge equation with two degrees of freedom
+        $$H = p_2^2 + p_1 p_2 - \frac{1}{2} \left( q_2 - \frac{1}{2}(\beta + 2)q_1 \right)^2 q_2 + e^{q_1} - q_1.$$
+        The linearization $A$ is diagonalizable for $\beta < 2$ but not for $\beta=2$.
+        \vspace{1cm}
+        $$
+        \scalemath{1}{
+        \begin{pmatrix}
+        -\frac{\sqrt{-\beta - \sqrt{\beta^2-4}}}{\sqrt{2}} & 0 & 0 & 0\\
+        0 & \frac{\sqrt{-\beta - \sqrt{\beta^2-4}}}{\sqrt{2}} & 0 & 0\\
+        0 & 0 & -\frac{\sqrt{-\beta + \sqrt{\beta^2-4}}}{\sqrt{2}} & 0\\
+        0 & 0 & 0 & \frac{\sqrt{-\beta + \sqrt{\beta^2-4}}}{\sqrt{2}}
+        \end{pmatrix}} \centernot{\xrightarrow[\beta \to 2]{}}
+        \setstackgap{L}{1.1\baselineskip}
+        \fixTABwidth{T}
+        \parenMatrixstack{
+        -i & 1 & 0 & 0\\
+        0 & -i & 0 & 0\\
+        0 & 0 & i & 1\\
+        0 & 0 & 0 & i
+        }.$$
+        
+    \end{block}
+    
+    \end{column}
+
+    \begin{column}{\colwidth}
+\begin{block}{The Versal Normal Form}
+As seen in \cite{schmidt1994versal} and introduced by Arnold, the versal normal form allows for a smooth transition in $\beta$ that agrees with the usual normal form at $\beta = 2$.
+\vspace{1cm}
+        $$
+        \Lambda = \begin{pmatrix}
+        -\frac{i}{2} \sqrt{\beta + 2} & 0 & 0 & -\frac{\beta - 2}{4}\\
+        0 & \frac{i}{2} \sqrt{\beta + 2} & -\frac{\beta - 2}{4} & 0\\
+        0 & 1 & \frac{i}{2} \sqrt{\beta + 2} & 0\\
+        1 & 0 & 0 & -\frac{i}{2} \sqrt{\beta + 2}
+        \end{pmatrix} \xrightarrow[\beta \to 2]{}
+        \setstackgap{L}{1.1\baselineskip}
+        \fixTABwidth{T}
+        \parenMatrixstack{
+        -i & 0 & 0 & 0\\
+        0 & i & 0 & 0\\
+        0 & 1 & i & 0\\
+        1 & 0 & 0 & -i
+        }.
+        $$  
+
+    For that we need to find the transformation matrix $R$ in terms of $\beta$ such that $R^{-1} A R = \Lambda$. We also need the change to be symplectic, so $R^{T}JR=J$.
+    \end{block}
+
+    \begin{block}{Polar Change of Coordinates and Rescaling}
+        Following \cite{sokolskii1974stability} we can focus on the few first terms of the normal form and apply a polar change of coordinates to understand better the dynamics.
+        \begin{align*}
+        \begin{cases}
+        \dot{r} = R, \qquad &\dot{R} = \frac{\Theta^2}{r^3}- \frac{(\beta - 2) r}{4} + \eta r^3,\\
+        \dot{\theta} = 1 + \frac{\Theta}{r^2}, \quad &\dot{\Theta} = 0.
+        \end{cases}
+        \end{align*}
+    With this information we can also rescale the system by a factor related to $2-\beta$ so that as $\beta \to 2$ the size of the manifolds is fixed. This yields an approximate expression for the manifolds: $R^2 = \frac{1}{2} \eta (r^2 - r^4)$ where $\eta$ is the coefficient of the first nonlinear term in the normal form.
+    \end{block}
+    \end{column}
+
+\begin{column}{\colwidth}
+\begin{block}{The Manifolds and the Orbit}
+    It is shown in \cite{mcswiggen2003evolution} that the invariant manifolds intersect for every $\beta$ near $2$. With this information we can craft an initial approximation for our CAP.
+\begin{figure}[htbp]
+    \begin{minipage}{0.45\textwidth}
+        
+        \centering
+        \begin{overpic}[width=0.525\textwidth]{figures/Normal form.pdf}
+            \put (98,50) {$\displaystyle r$}
+            \put (6,97) {$R$}
+        \end{overpic}
+    \end{minipage}
+    \begin{minipage}{0.425\textwidth}
+        \centering
+        \begin{overpic}[width=0.75\textwidth]{figures/Orbit.pdf}
+        \end{overpic}
+    \end{minipage}
+    \caption{Left: Manifolds in terms of the radius and its momentum in polar coordinates. They shrink to $0$ when $\beta \to 2$. Right: The local manifolds (blue). The homoclinic orbit (red).}
+    \end{figure}
+\end{block}
+        \vspace{-2.5ex}
+    \begin{block}{References}
+        \vspace{-.5ex}
+        \nocite{*}
+        \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+    \end{block}
+
+\end{column}
+\end{columns}
+        
+\end{frame}
+
+\end{document}

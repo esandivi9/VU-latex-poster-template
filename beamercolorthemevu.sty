@@ -1,0 +1,75 @@
+% beamercolorthemevu.sty
+% ======================
+% University of Amsterdam Color Theme for Beamer
+%
+% Adapted from Gemini theme by Anish Athalye
+% https://github.com/anishathalye/gemini
+%
+% Created and adapted by Eric Sandin, 2025-06-30
+%
+% This package defines the official university colors and applies
+% them to various Beamer elements for consistent branding.
+%
+\ProvidesPackage{beamercolorthemevu}[2025/06/30 University color theme]
+
+% ====================
+% Color Definitions
+% ====================
+
+% Main University Colors
+\definecolor{vublue}{HTML}{0089cf}
+\definecolor{vuorange}{HTML}{CF4600}
+\definecolor{vugreen}{HTML}{1CC900} % Defined but not currently used
+
+% Extra Colors
+\definecolor{lightgray}{RGB}{240, 240, 240}
+\definecolor{lightorange}{HTML}{fff5f0}
+
+% ====================
+% Palette Colors (navigation bars, headers)
+% ====================
+
+\setbeamercolor{palette primary}{fg=black,bg=white}
+\setbeamercolor{palette secondary}{fg=black,bg=white}
+\setbeamercolor{palette tertiary}{fg=white,bg=black}
+\setbeamercolor{palette quaternary}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=vublue}
+
+% Headline bar color
+\setbeamercolor{headline}{fg=white,bg=vublue}
+
+% ====================
+% Blocks styling
+% ====================
+
+% Standard block
+\setbeamercolor{block title}{fg=vublue,bg=white}
+\setbeamercolor{block separator}{bg=vublue}
+\setbeamercolor{block body}{fg=black,bg=white}
+
+% Alert block (warning, errors)
+\setbeamercolor{block alerted title}{fg=vuorange,bg=lightorange}
+\setbeamercolor{block alerted separator}{bg=vuorange}
+\setbeamercolor{block alerted body}{fg=black,bg=lightorange}
+
+% Example block (highlighted examples)
+\setbeamercolor{block example title}{fg=vublue,bg=lightgray}
+\setbeamercolor{block example separator}{bg=black}
+\setbeamercolor{block example body}{fg=black,bg=lightgray}
+
+% ====================
+% Other elements
+% ====================
+
+% Headings
+\setbeamercolor{heading}{fg=black}
+
+% Itemize bullets color
+\setbeamercolor{item}{fg=vublue}
+
+% Bibliography entries
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
